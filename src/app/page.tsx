@@ -1,95 +1,31 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { Button } from '@/components/Button';
+import { ThemeSwitcher } from '../components/ThemeSwitcher';
+import { css } from '../../styled-system/css';
+import { hstack, vstack } from '../../styled-system/patterns';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <main className={css({ minH: '100vh', p: '8', bg: 'bg.canvas', color: 'text.default' })}>
+      <div className={hstack({ justify: 'space-between', alignItems: 'center' })}>
+        <h1 className={css({ fontSize: '2xl', fontWeight: 'bold' })}>
+          Кнопки с вариантами и темами
+        </h1>
+        <ThemeSwitcher />
+      </div>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+      <div className={vstack({ mt: '8', gap: '4', alignItems: 'flex-start' })}>
+        <p>Primary:</p>
+        <div className={hstack({ gap: '4' })}>
+          <Button visual="primary">Primary Button</Button>
+          <Button visual="primary" disabled>Disabled</Button>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        <p className={css({ mt: '4' })}>Secondary:</p>
+        <div className={hstack({ gap: '4' })}>
+          <Button visual="secondary">Secondary Button</Button>
+          <Button visual="secondary" disabled>Disabled</Button>
+        </div>
+      </div>
+    </main>
   );
 }
