@@ -2,6 +2,7 @@ import { Button } from '@/components/Button';
 import { ThemeSwitcher } from '../components/ThemeSwitcher';
 import { css } from '../../styled-system/css';
 import { hstack, vstack } from '../../styled-system/patterns';
+// import './globals.css';
 
 export default function Home() {
   return (
@@ -25,6 +26,9 @@ export default function Home() {
           <Button visual="secondary">Secondary Button</Button>
           <Button visual="secondary" disabled>Disabled</Button>
         </div>
+          <button className={css({ bg: "button.primary.bg", color: "button.primary.text" })}>
+    Test Button
+  </button>
       </div>
     </main>
   );

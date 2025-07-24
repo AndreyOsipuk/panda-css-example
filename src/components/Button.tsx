@@ -3,9 +3,8 @@
 import { cva } from '../../styled-system/css';
 import { styled } from '../../styled-system/jsx';
 
-// 1. Создаем "рецепт" для нашей кнопки
+// 1. Создаем "рецепт" для кнопки, используя семантические токены
 const buttonRecipe = cva({
-  // Базовые стили, общие для всех вариантов
   base: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -16,24 +15,26 @@ const buttonRecipe = cva({
     paddingY: '2',
     cursor: 'pointer',
     transition: 'all 0.2s ease-in-out',
-    // Стили для неактивного состояния
     _disabled: {
       opacity: 0.5,
       cursor: 'not-allowed',
     }
   },
-  // Описываем варианты
   variants: {
     visual: {
       primary: {
+        // Используем семантические токены. Panda преобразует их в CSS переменные.
         backgroundColor: 'button.primary.bg',
         color: 'button.primary.text',
+        borderWidth: '1px',
+        borderColor: 'transparent',
         _hover: {
           opacity: 0.9,
         },
       },
       secondary: {
         borderWidth: '1px',
+        // Здесь также используются семантические токены
         borderColor: 'button.secondary.border',
         backgroundColor: 'button.secondary.bg',
         color: 'button.secondary.text',
@@ -43,11 +44,10 @@ const buttonRecipe = cva({
       },
     },
   },
-  // Вариант по умолчанию
   defaultVariants: {
     visual: 'primary',
   },
 });
 
-// 2. Создаем наш React-компонент с помощью styled-фабрики и нашего рецепта
+// 2. Создаем React-компонент
 export const Button = styled('button', buttonRecipe);

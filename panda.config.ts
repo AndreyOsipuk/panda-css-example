@@ -1,22 +1,22 @@
 import { defineConfig } from '@pandacss/dev'
 
 export default defineConfig({
-  preflight: true,
+   preflight: true,
   include: ['./src/**/*.{js,jsx,ts,tsx}'],
   exclude: [],
 
   jsxFramework: 'react',
   outdir: 'styled-system',
-
   conditions: {
     light: '[data-theme="light"] &',
     dark: '[data-theme="dark"] &',
+    blue: '[data-theme="blue"] &',
   },
+
   globalCss: {
     body: {
       bg: 'bg.canvas',
       color: 'text.default',
-
     },
 
   },
@@ -34,31 +34,49 @@ export default defineConfig({
           900: { value: '#1a202c' },
         },
         blue: { 500: { value: '#3b82f6' } },
+        red: { 500: { value: '#ef4444' } },
+        green: { 500: { value: '#22c55e' } },
       },
     },
     semanticTokens: {
       colors: {
         bg: {
-          canvas: { value: { light: '{colors.gray.100}', dark: '{colors.gray.900}' } },
-          surface: { value: { light: 'white', dark: '{colors.gray.800}' } }, // Фон для карточки
+          canvas: { value: { base: '{colors.white}', _dark: '{colors.gray.900}' } },
+          surface: { value: { base: '{colors.gray.50}', _dark: '{colors.gray.800}' } },
         },
         text: {
-          default: { value: { light: '{colors.gray.900}', dark: '{colors.gray.100}' } },
-          muted: { value: { light: '{colors.gray.500}', dark: '{colors.gray.400}' } }, // Приглушенный текст
+          default: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.100}' } },
+          muted: { value: { base: '{colors.gray.500}', _dark: '{colors.gray.400}' } },
         },
         border: {
-          default: { value: { light: '{colors.gray.200}', dark: '{colors.gray.800}' } }, // Цвет границы
+          default: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.700}' } },
         },
+        // Токены для компонента кнопки
         button: {
           primary: {
-            bg: {value: '{colors.blue.500}'},
-            text: {value: '{colors.white}'},
+            bg: {
+              value: { base: '{colors.blue.500}', _dark: '{colors.green.500}', _blue: '{colors.red.500}'  }
+            },
+            text: {
+              value: { base: '{colors.white}', _dark: '{colors.white}' }
+            },
           },
           secondary: {
-            bg: {value: {light: '{colors.white}', dark: '{colors.gray.800}'}},
-            bg_hover: { value: { light: '{colors.gray.100}', dark: '{colors.gray.700}' } },
-            text: {value: {light: '{colors.gray.900}', dark: '{colors.gray.100}'}},
-            border: {value: {light: '{colors.gray.200}', dark: '{colors.gray.700}'}},
+            // Вторичная кнопка теперь имеет прозрачный фон и рамку в цвет акцента
+            bg: {
+              value: { base: 'transparent', _dark: 'transparent' }
+            },
+            bg_hover: {
+              value: { base: '{colors.gray.100}', _dark: '{colors.gray.800}' }
+            },
+            text: {
+              // Текст кнопки соответствует акцентному цвету темы
+              value: { base: '{colors.blue.500}', _dark: '{colors.green.500}' }
+            },
+            border: {
+              // Рамка кнопки соответствует акцентному цвету темы
+              value: { base: '{colors.blue.500}', _dark: '{colors.green.500}' }
+            },
           },
         }
       },
