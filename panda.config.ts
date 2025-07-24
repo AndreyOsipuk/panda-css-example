@@ -1,7 +1,51 @@
 import { defineConfig } from '@pandacss/dev'
 
+const primary = {
+  bg: {
+    value: { 
+      _light: '{colors.blue.500}',
+      _dark: '{colors.green.500}',
+      _blue: '{colors.red.500}'
+    }
+  },
+  text: {
+    value: { base: '{colors.white}' }
+  },
+};
+
+// 2. Определяем стили для варианта 'secondary' как константу.
+const secondary = {
+  bg: {
+    value: { base: 'transparent' }
+  },
+  bg_hover: {
+    value: { 
+      base: '{colors.gray.100}',
+      _light: '{colors.gray.100}',
+      _dark: '{colors.gray.800}',
+      _blue: '{colors.gray.700}'
+    }
+  },
+  text: {
+    value: { 
+      base: '{colors.blue.500}',
+      _light: '{colors.blue.500}',
+      _dark: '{colors.green.500}',
+      _blue: '{colors.red.500}'
+    }
+  },
+  border: {
+    value: { 
+      base: '{colors.blue.500}',
+      _light: '{colors.blue.500}',
+      _dark: '{colors.green.500}',
+      _blue: '{colors.red.500}'
+    }
+  },
+};
+
 export default defineConfig({
-   preflight: true,
+  preflight: true,
   include: ['./src/**/*.{js,jsx,ts,tsx}'],
   exclude: [],
 
@@ -18,7 +62,6 @@ export default defineConfig({
       bg: 'bg.canvas',
       color: 'text.default',
     },
-
   },
   theme: {
     tokens: {
@@ -41,43 +84,20 @@ export default defineConfig({
     semanticTokens: {
       colors: {
         bg: {
-          canvas: { value: { base: '{colors.white}', _dark: '{colors.gray.900}' } },
-          surface: { value: { base: '{colors.gray.50}', _dark: '{colors.gray.800}' } },
+          canvas: { value: { base: '{colors.white}', _light: '{colors.white}', _dark: '{colors.gray.900}', _blue: '{colors.gray.800}' } },
+          surface: { value: { base: '{colors.gray.50}', _light: '{colors.gray.50}', _dark: '{colors.gray.800}', _blue: '{colors.gray.700}' } },
         },
         text: {
-          default: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.100}' } },
-          muted: { value: { base: '{colors.gray.500}', _dark: '{colors.gray.400}' } },
+          default: { value: { base: '{colors.gray.900}', _light: '{colors.gray.900}', _dark: '{colors.gray.100}', _blue: '{colors.gray.100}' } },
+          muted: { value: { base: '{colors.gray.500}', _light: '{colors.gray.500}', _dark: '{colors.gray.400}', _blue: '{colors.gray.400}' } },
         },
         border: {
-          default: { value: { base: '{colors.gray.200}', _dark: '{colors.gray.700}' } },
+          default: { value: { base: '{colors.gray.200}', _light: '{colors.gray.200}', _dark: '{colors.gray.700}', _blue: '{colors.gray.600}' } },
         },
-        // Токены для компонента кнопки
+        // 3. Используем константы для создания правильной вложенной структуры.
         button: {
-          primary: {
-            bg: {
-              value: { base: '{colors.blue.500}', _dark: '{colors.green.500}', _blue: '{colors.red.500}'  }
-            },
-            text: {
-              value: { base: '{colors.white}', _dark: '{colors.white}' }
-            },
-          },
-          secondary: {
-            // Вторичная кнопка теперь имеет прозрачный фон и рамку в цвет акцента
-            bg: {
-              value: { base: 'transparent', _dark: 'transparent' }
-            },
-            bg_hover: {
-              value: { base: '{colors.gray.100}', _dark: '{colors.gray.800}' }
-            },
-            text: {
-              // Текст кнопки соответствует акцентному цвету темы
-              value: { base: '{colors.blue.500}', _dark: '{colors.green.500}' }
-            },
-            border: {
-              // Рамка кнопки соответствует акцентному цвету темы
-              value: { base: '{colors.blue.500}', _dark: '{colors.green.500}' }
-            },
-          },
+          primary,
+          secondary,
         }
       },
     },
