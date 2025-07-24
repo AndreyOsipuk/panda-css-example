@@ -24,6 +24,7 @@ export function ThemeSwitcher() {
     if(theme) {
       const currentIndex = themes.indexOf(theme);
       const nextIndex = (currentIndex + 1) % themes.length;
+      console.log(`Текущая тема: ${theme}, переключаем на: ${themes[nextIndex]}`);
       setTheme(themes[nextIndex]);
     }
 

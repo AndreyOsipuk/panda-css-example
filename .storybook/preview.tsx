@@ -11,7 +11,7 @@ function ThemeUpdater({ theme }: { theme: string | undefined }) {
     if (theme) {
       setTheme(theme);
     }
-  }, [theme, setTheme]);
+  }, []);
 
   return null;
 }
@@ -19,7 +19,7 @@ function ThemeUpdater({ theme }: { theme: string | undefined }) {
 const withNextThemes: Decorator = (Story, context) => {
   // Получаем тему, выбранную в тулбаре Storybook
   const { theme } = context.globals;
-
+console.log
   // Оборачиваем историю в наш провайдер
   return (
     <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
@@ -44,8 +44,9 @@ const preview: Preview = {
       themes: {
         light: 'light',
         dark: 'dark',
+        blue: 'blue',
       },
-      defaultTheme: 'dark',
+      defaultTheme: 'light',
       attributeName: 'data-theme',
     }),
   ],
